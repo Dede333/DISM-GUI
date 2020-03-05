@@ -1,5 +1,7 @@
-# Welcome to GitHub Desktop!
+Bienvenue,
 
-This is your README. READMEs are where you can communicate what your project is and how to use it.
+DISM-GUI est une application graphique pour la commande DISM (fournit avec le winpe / adk 1903 de microsoft).
+Je propose une refonte en language C# (basé sur le dotnet framework 4.7.2).
+La version originale écrite par Mike Celone est visible ici: http://mikecel79.wordpress.com.
 
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+Cordialement
