@@ -35,3 +35,4 @@ C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe.co
 C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe
 C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.pdb
 C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormAbout.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csproj.CoreCompileInputs.cache

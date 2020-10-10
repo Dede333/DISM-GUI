@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace DISM_GUI
 {
@@ -151,6 +147,7 @@ namespace DISM_GUI
         {
             StrDISMExitCode = "";
             Process DISM = new Process();                   // création d'un nouveau processus
+            DISM.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(CultureInfo.CurrentCulture.TextInfo.OEMCodePage);
             DISM.StartInfo.RedirectStandardOutput = true;   // pour la redirection de la sortie standard
             DISM.StartInfo.RedirectStandardError = true;    // pour la redirection du canal d'erreur
             DISM.StartInfo.UseShellExecute = false;         // pas de shell d'exécution
@@ -235,6 +232,7 @@ namespace DISM_GUI
                 BlnDISMCommit = false;
 
             DISM = new Process();
+            DISM.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(CultureInfo.CurrentCulture.TextInfo.OEMCodePage);
             DISM.StartInfo.RedirectStandardOutput = true;  // redirection sortie standard
             DISM.StartInfo.RedirectStandardError = true;   // redirection sortie erreur
             DISM.StartInfo.UseShellExecute = false;        // pas de shell
@@ -273,6 +271,7 @@ namespace DISM_GUI
             StrDISMExitCode = "";
             Process DISM = new Process();
 
+            DISM.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(CultureInfo.CurrentCulture.TextInfo.OEMCodePage);
             DISM.StartInfo.RedirectStandardOutput = true;       // redirection sortie standard
             DISM.StartInfo.RedirectStandardError = true;        // redirection sortie erreur
             DISM.StartInfo.UseShellExecute = false;             // pas de shell
