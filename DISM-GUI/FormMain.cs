@@ -50,7 +50,6 @@ namespace DISM_GUI
             InitializeComponent();
         }
 
-
         // MENU TOOLS
         // Ouverture du journal de log de la commande DISM
         // Révision le 19/02/2020

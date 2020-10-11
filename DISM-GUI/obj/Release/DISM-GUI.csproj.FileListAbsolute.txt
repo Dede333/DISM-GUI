@@ -9,4 +9,3 @@ C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.csproj.Genera
 C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.exe
 C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.pdb
 C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.csproj.CoreCompileInputs.cache
-C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.csprojAssemblyReference.cache
