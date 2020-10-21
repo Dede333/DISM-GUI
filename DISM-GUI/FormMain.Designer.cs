@@ -185,6 +185,8 @@
             this.backgroundWorkerDismount = new System.ComponentModel.BackgroundWorker();
             this.BtnEffaceConsoleDism = new System.Windows.Forms.Button();
             this.OpenFileDialog_ChoisirMSP = new System.Windows.Forms.OpenFileDialog();
+            this.TxtBox_DISMVersion = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.TabGestion.SuspendLayout();
             this.GestionMontage.SuspendLayout();
@@ -1772,11 +1774,31 @@
             this.BtnEffaceConsoleDism.UseVisualStyleBackColor = true;
             this.BtnEffaceConsoleDism.Click += new System.EventHandler(this.BtnEffaceConsoleDism_Click);
             // 
+            // TxtBox_DISMVersion
+            // 
+            this.TxtBox_DISMVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBox_DISMVersion.Location = new System.Drawing.Point(571, 320);
+            this.TxtBox_DISMVersion.Name = "TxtBox_DISMVersion";
+            this.TxtBox_DISMVersion.Size = new System.Drawing.Size(132, 26);
+            this.TxtBox_DISMVersion.TabIndex = 13;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(453, 324);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(112, 20);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "DISM Version:";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 604);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.TxtBox_DISMVersion);
             this.Controls.Add(this.BtnEffaceConsoleDism);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TxtBoxOutput);
@@ -1984,6 +2006,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtBoxExportDossierDriverOnline;
         private System.Windows.Forms.Button BtnExportDriverChoisirDossierOnline;
+        private System.Windows.Forms.TextBox TxtBox_DISMVersion;
+        private System.Windows.Forms.Label label10;
     }
 }
 

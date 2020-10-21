@@ -48,6 +48,35 @@ namespace DISM_GUI
         public FormMain()
         {
             InitializeComponent();
+            InfoVersionDISM();
+        }
+
+        // Extraction de la version de DISM utilisé
+        // 
+        // Révision le 18/10/2020
+        // il faut extraire la version dans la chaine sur une ligne
+        // ne fonctionne pas comme prévu, ajout de DISM.Close()
+        private void InfoVersionDISM()
+        {
+            int IdxDebStr, IdxFinStr;
+            StrDISMExitCode = "";
+            Process DISM = new Process();                   
+            DISM.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(CultureInfo.CurrentCulture.TextInfo.OEMCodePage);
+            DISM.StartInfo.RedirectStandardOutput = true;   
+            DISM.StartInfo.RedirectStandardError = true;    
+            DISM.StartInfo.UseShellExecute = false;         
+            DISM.StartInfo.CreateNoWindow = true;           
+            DISM.StartInfo.FileName = "dism.exe";
+            
+            DISM.Start();
+            StrOutput = DISM.StandardOutput.ReadToEnd();
+            DISM.WaitForExit();
+
+            StrDISMExitCode = DISM.ExitCode.ToString();
+            IdxDebStr = StrOutput.IndexOf(": ");
+            IdxFinStr= StrOutput.IndexOf("DISM");
+            TxtBox_DISMVersion.Text = StrOutput.Substring(IdxDebStr+2,IdxFinStr-(IdxDebStr+2));
+            DISM.Close();
         }
 
         // MENU TOOLS
