@@ -1,1 +1,0 @@
-dism | findstr "Version"
