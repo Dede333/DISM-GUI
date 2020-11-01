@@ -1,0 +1,11 @@
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\bin\Release\DISM-GUI.exe.config
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\bin\Release\DISM-GUI.exe
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\bin\Release\DISM-GUI.pdb
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM_GUI.FormAbout.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM_GUI.FormMain.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM_GUI.FormProgress.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM_GUI.Properties.Resources.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.csproj.GenerateResource.cache
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.csproj.CoreCompileInputs.cache
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.exe
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Release\DISM-GUI.pdb
