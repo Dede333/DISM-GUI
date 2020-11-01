@@ -4,6 +4,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DISM_GUI
 {
@@ -43,12 +46,15 @@ namespace DISM_GUI
 
         FormProgress MaFormeProgress = new FormProgress();  // Pour instancier la forme FormProgress
         FormAbout MaFormAbout=new FormAbout();    // pour instancier la forme FormAbout
-  
+
+        List<InfosWIM> ListInfosWimGestionMontage = new List<InfosWIM>(); // pour le menu Gestion Montage
+        List<InfosWIM> ListInfosWimAppliquerImage = new List<InfosWIM>(); // pour le menu Appliquer Image
+        List<InfosWIM> ListInfosWimExportImage = new List<InfosWIM>();    // pour le menu Export Image
 
         public FormMain()
         {
             InitializeComponent();
-            InfoVersionDISM();
+            InfoVersionDISM();          // récupére la version utilisé de la commande DISM
         }
 
         // Extraction de la version de DISM utilisé
@@ -56,6 +62,11 @@ namespace DISM_GUI
         // Révision le 18/10/2020
         // il faut extraire la version dans la chaine sur une ligne
         // ne fonctionne pas comme prévu, ajout de DISM.Close()
+        // Attention: la version affiché n'est pas forcément la dernière version
+        // celle ci dépend des variables de l'environnement windows
+        // il faut modifier cela en passant le chemin vers la commande DISM
+        // pour être sûre d'exploiter la bonne version.
+        //
         private void InfoVersionDISM()
         {
             int IdxDebStr, IdxFinStr;
@@ -72,8 +83,12 @@ namespace DISM_GUI
             StrOutput = DISM.StandardOutput.ReadToEnd();
             DISM.WaitForExit();
 
+            // StreamWriter sw = new StreamWriter("test.txt");  // dans le dossier en cours de l'application
+            // sw.WriteLine(StrOutput);
+            // sw.Close();
+
             StrDISMExitCode = DISM.ExitCode.ToString();
-            IdxDebStr = StrOutput.IndexOf(": ");
+            IdxDebStr = StrOutput.IndexOf(": ");                // recherche de la première occurence ":"
             IdxFinStr= StrOutput.IndexOf("DISM");
             TxtBox_DISMVersion.Text = StrOutput.Substring(IdxDebStr+2,IdxFinStr-(IdxDebStr+2));
             DISM.Close();
@@ -105,15 +120,38 @@ namespace DISM_GUI
         }
 
         // Permet de choisir le fichier WIM dans le menu Gestion Montage
-        // Révision 19/02/2020
+        // Révision 01/11/2020
+        // Lors du choix d'un fichier WIM, les informations du WIM seront
+        // automatiquement visible dans la console de l'application (DISM-GUI)
+        // ATTENTION: Le montage direct d'un WIM depuis un ESD n'est pas pris en charge !!
+        // Il faut impérativement convertir l'image, utiliser la fonction Export-Wim
         //
         private void BtnChoisirWim_Click(object sender, EventArgs e)
         {
+            int IdxFor;
             OpenFileDialogue_ChoisirWIM.InitialDirectory = "C:\\";
             OpenFileDialogue_ChoisirWIM.Title = "Choisir un fichier WIM à ouvrir";
             OpenFileDialogue_ChoisirWIM.Filter = ("Fichier WIM (*.wim)|*.wim|Fichier ESD (*.ESD)|*.ESD|All Files (*.*)|*.*");
             if (OpenFileDialogue_ChoisirWIM.ShowDialog() == DialogResult.OK)
                 TxtFichierWim.Text = OpenFileDialogue_ChoisirWIM.FileName;
+
+            DialogResult Result;
+            if (TxtFichierWim.Text == "")
+            {
+                Result = MessageBox.Show("Vous devez sélectionner un fichier WIM en premier.", "Information WIM", MessageBoxButtons.OK);
+            }
+
+            else
+            {   // nom de fichier qui sera stocké dans le répertoire de l'application DISM-GUI
+                AfficheWimInfos("GestionMontage_WimInfos.txt", TxtFichierWim.Text);
+                this.CmbBoxIndex.Items.Clear();     // efface le contenu de la combobox d'index
+                MAJListeIndex("GestionMontage_WimInfos.txt", ListInfosWimGestionMontage);  // Mise à jour des index
+                
+                for (IdxFor = 1; IdxFor <= ListInfosWimGestionMontage.Count(); IdxFor++)
+                {
+                    this.CmbBoxIndex.Items.Add(IdxFor);  // création interval index
+                }
+            }
         }
 
         // Permet de choisir le dossier point de montage du fichier WIM menu gestion image
@@ -143,29 +181,87 @@ namespace DISM_GUI
             // End If
         }
 
-        // Affiche les informations du WIM sélectionné menu gestion montage menu gestion montage
+        // Affiche les informations du WIM spécifié
+        // dans la console de l'application DISM-GUI
         // Attention ne pas oublier d'encadrer les arguments avec des guillemets
         //
-        private void AfficheWimInfos_Click(object sender, EventArgs e)
+        private void AfficheWimInfos(String NomFichier,String NomFichierWim)
         {
-            DialogResult Result;
-            if (TxtFichierWim.Text == "")
+            StrWIM = NomFichierWim;
+            StrDISMArguments = "/Get-WimInfo /WimFile:" + "\"" + NomFichierWim + "\"";
+            TxtBoxOutput.Text = "Exécution de la ligne de commande: DISM.EXE " + StrDISMArguments;
+
+            backgroundWorkerDismCommand.RunWorkerAsync(StrDISMArguments);
+            MaFormeProgress.ShowDialog();       // Affiche une progress Bar
+            TxtBoxOutput.Text = StrOutput;
+
+            try
             {
-                Result = MessageBox.Show("Vous devez sélectionner un fichier WIM en premier.", "Information WIM", MessageBoxButtons.OK);
+                StreamWriter sw = new StreamWriter(NomFichier);  // dans le dossier en cours de l'application
+                sw.WriteLine(StrOutput);
+                sw.Close();
             }
-
-            else
+            catch (Exception ex)
             {
-                StrWIM = TxtFichierWim.Text;
-                StrDISMArguments = "/Get-WimInfo /WimFile:" + "\"" + TxtFichierWim.Text + "\"";
-                TxtBoxOutput.Text = "Exécution de la ligne de commande: DISM.EXE " + StrDISMArguments;
-
-                backgroundWorkerDismCommand.RunWorkerAsync(StrDISMArguments);
-                MaFormeProgress.ShowDialog();       // Affiche une progress Bar
-                TxtBoxOutput.Text = StrOutput;
+                MessageBox.Show("Erreur lors de la création du fichier (wiminfos.txt): " + ex.Message.ToString());
             }
         }
 
+
+        // Lecture des informations sur le WIM depuis le fichier wiminfos (du dossier de l'application)
+        // Révision 01/11/2020
+        // Nom fichier est la représentation des index sauvegardé sur disk dur
+        // résultat de la commande DISM /Get-WimInfo
+        // List<InfosWIM> ListInfosWim, tableau fortement typé qui contient les infos WIMs
+
+        private void MAJListeIndex(String NomFichier, List<InfosWIM> ListInfosWim)
+        {
+            string FileName = NomFichier; // présent dans le dossier de l'application
+            string LigneFic = "";
+            string StrSansEspace = "";
+            int IdxDebStr;
+            
+            // nom de fichier par rapport au menu dans l'application DISM-GUI
+            StreamReader r = new StreamReader(FileName);
+            ListInfosWim.Clear(); // efface le contenu de la liste
+            
+            try
+            {
+                while (r.EndOfStream != true)  // tend que pas fin de fichier
+                {
+                    IdxDebStr = 0;
+
+                    LigneFic = r.ReadLine();                    // lecture d'une ligne
+
+                    IdxDebStr = LigneFic.IndexOf("Index");      // recherche chaine "Index :"
+                    if (IdxDebStr == 0)                         // chaine trouvé si 0 sinon -1
+                    {
+                        InfosWIM UnWim = new InfosWIM();        // nouvelle instance de InfosWim
+                        UnWim.Index = Convert.ToInt32(LigneFic.Substring(IdxDebStr + 8, (LigneFic.Length) - 8));
+                        LigneFic = r.ReadLine();                // lecture nom wim
+                        UnWim.Nom = LigneFic.Substring(6, (LigneFic.Length) - 6);
+
+                        LigneFic = r.ReadLine();                // lecture description
+                        UnWim.Description = LigneFic.Substring(14, (LigneFic.Length) - 14);
+
+                        LigneFic = r.ReadLine();                // lecture taille wim
+                        StrSansEspace = LigneFic.Replace("\u00A0", ""); // supprime les espaces en UTF8
+                        UnWim.Taille = Convert.ToUInt64(StrSansEspace.Substring(8, (StrSansEspace.Length) - 15));                       // problème à résoudre
+                        ListInfosWim.Add(UnWim);
+                    }
+                    //MessageBox.Show("Valeur de la ligne: " + LigneFic);
+                    //MessageBox.Show("Resultat Recherche: " + IdxDebStr);
+                    //MessageBox.Show("Taille de la ligne: " + LigneFic.Length);
+                }
+                r.Close();
+
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur de lecture du fichier: " + ex.Message.ToString());
+            }
+        }
         // Permet d'exécuter la commande DISM pour monter une image WIM spécifié
         // création d'un nouveau processus (commande dism avec les arguments)
         // qui sera exécuter en tâche de fond de maniére asynchrone
@@ -663,7 +759,7 @@ namespace DISM_GUI
                     MessageBox.Show("Vous devez sélectionner un fichier destination.");
                 else
                 {
-                    if (TxtBoxCaptureNomFichier.Text == "")    // nom fichier renseigné
+                    if (TxtBoxNomFichierDest.Text == "")    // nom fichier renseigné
                         MessageBox.Show("Vous devez saisir un nom pour le fichier WIM de destination.");
                     else
                     {
@@ -673,13 +769,16 @@ namespace DISM_GUI
                         {
                             StrSource = TxtBoxCaptureSource.Text;           // non utile, mémorisation pour un usage futur
                             StrDest = TxtBoxCaptureDestination.Text;        // non utile, mémorisation pour un usgae futur
-                            StrName = TxtBoxCaptureNomFichier.Text;         // non utile, mémorisation pour un usage futur
-                            StrCompression = CmbBoxCaptureCompression.Text; // non utile, mémorisation pour un usgae futur
+                            StrName = TxtBoxNomFichierDest.Text;         // non utile, mémorisation pour un usage futur
+                            
+                            StrCompression = CmbBoxCaptureCompression.Text; // non utile, mémorisation pour un usage futur
+
+                            if (Path.GetExtension(TxtBoxNomFichierDest.Text.ToUpper()) != ".WIM") TxtBoxNomFichierDest.Text = TxtBoxNomFichierDest.Text + ".wim";
 
                             if (ChkBoxCaptureVerifier.Checked == true)      // arguments avec option de vérification
-                                StrDISMArguments = "/Capture-Image /ImageFile:" + "\"" + TxtBoxCaptureDestination.Text + "\\" + TxtBoxCaptureNomFichier.Text + "\"" + " /CaptureDir:" + "\"" + TxtBoxCaptureSource.Text + "\"" + " /Name:" + "\"" + TxtBoxCaptureDescriptionWIM.Text + "\"" + " /Compress:" + StrCompression + " /Verify";
+                                StrDISMArguments = "/Capture-Image /ImageFile:" + "\"" + TxtBoxCaptureDestination.Text + "\\" + TxtBoxNomFichierDest.Text + "\"" + " /CaptureDir:" + "\"" + TxtBoxCaptureSource.Text + "\"" + " /Name:" + "\"" + TxtBoxNomWIM.Text + "\"" + " /Description:" + "\"" + TxtBoxCaptureDescriptionWIM.Text + "\"" + " /Compress:" + StrCompression + " /Verify";
                             else
-                                StrDISMArguments = "/Capture-Image /ImageFile:" + "\"" + TxtBoxCaptureDestination.Text + "\\" + TxtBoxCaptureNomFichier.Text + "\"" + " /CaptureDir:" + "\"" + TxtBoxCaptureSource.Text + "\"" + " /Name:" + "\"" + TxtBoxCaptureDescriptionWIM.Text + "\"" + " /Compress:" + StrCompression;
+                                StrDISMArguments = "/Capture-Image /ImageFile:" + "\"" + TxtBoxCaptureDestination.Text + "\\" + TxtBoxNomFichierDest.Text + "\"" + " /CaptureDir:" + "\"" + TxtBoxCaptureSource.Text + "\"" + " /Name:" + "\"" + TxtBoxNomWIM.Text + "\"" + " /Description:" + "\"" + TxtBoxCaptureDescriptionWIM.Text + "\"" + " /Compress:" + StrCompression;
 
                             TxtBoxOutput.Text = "Exécution de la ligne de commande: DISM.EXE " + StrDISMArguments;
 
@@ -708,7 +807,7 @@ namespace DISM_GUI
                     MessageBox.Show("Vous devez sélectionner un fichier destination.");
                 else
                 {
-                    if (TxtBoxCaptureNomFichier.Text == "")                 // nom fichier WIM renseigné
+                    if (TxtBoxNomFichierDest.Text == "")                 // nom fichier WIM renseigné
                         MessageBox.Show("Vous devez saisir un nom pour le fichier WIM de destination.");
                     else
                     {
@@ -721,7 +820,11 @@ namespace DISM_GUI
                             StrName = TxtBoxCaptureDescriptionWIM.Text;             // non utile, mémorise nom fichier
                             StrCompression = CmbBoxCaptureCompression.Text;     // non utile, mémorise niveau de compression
 
-                            StrDISMArguments = "/Append-Image /ImageFile:" + "\"" + TxtBoxCaptureDestination.Text + "\\" + TxtBoxCaptureNomFichier.Text + "\"" + " /CaptureDir:" + "\"" + TxtBoxCaptureSource.Text + "\"" + " /Name:" + "\"" + TxtBoxCaptureDescriptionWIM.Text + "\"";
+                            if (Path.GetExtension(TxtBoxNomFichierDest.Text.ToUpper()) != ".WIM") TxtBoxNomFichierDest.Text = TxtBoxNomFichierDest.Text + ".wim";
+
+                            StrDISMArguments = "/Append-Image /ImageFile:" + "\"" + TxtBoxCaptureDestination.Text + "\\" + TxtBoxNomFichierDest.Text + "\"" + " /CaptureDir:" + "\"" + TxtBoxCaptureSource.Text + "\"" + " /Name:" + "\"" + TxtBoxNomWIM.Text + "\"" + " /Description:" + "\"" + TxtBoxCaptureDescriptionWIM.Text + "\"";
+                            if (ChkBoxCaptureVerifier.Checked == true) StrDISMArguments = StrDISMArguments + " /Verify";
+
                             TxtBoxOutput.Text = "Exécution de la ligne de commande: DISM.EXE " + StrDISMArguments;
 
                             backgroundWorkerDismCommand.RunWorkerAsync(StrDISMArguments);
@@ -772,16 +875,29 @@ namespace DISM_GUI
         }
 
         // Permet de fixer le fichier source WIM à appliquer par la suite menu Appliquer Image
-        // Révision le 19/02/2020
+        // Révision le 01/11/2020
         //
         private void BtnApplyParcourirSource_Click(object sender, EventArgs e)
         {
+            int IdxFor;
             OpenFileDialog MaBoiteDialogue = new OpenFileDialog();      // instance de boite de dialogue
             MaBoiteDialogue.InitialDirectory = "C:\\";                  // on démarre la recherche depuis le lecteur C:
             MaBoiteDialogue.Title = "Choisir un fichier WIM ouvrir";    // le titre
             MaBoiteDialogue.Filter = ("Fichier WIM (*.wim)|*.wim|All Files (*.*)|*.*"); // le filtre fichier
             if (MaBoiteDialogue.ShowDialog() == DialogResult.OK)        // si confirmation   
+            {
                 TxtBoxApplySource.Text = MaBoiteDialogue.FileName;      // récupére le fichier sélectionné par l'utilisateur
+                
+                AfficheWimInfos("AppliquerImage_WimInfos.txt", TxtBoxApplySource.Text);
+                
+                this.CmbBoxApplyIndex.Items.Clear();  // efface la liste d'index
+                MAJListeIndex("AppliquerImage_WimInfos.txt", ListInfosWimAppliquerImage);
+                
+                for (IdxFor = 1; IdxFor <= ListInfosWimAppliquerImage.Count(); IdxFor++)
+                {
+                    this.CmbBoxApplyIndex.Items.Add(IdxFor);  // création interval index
+                }
+            }
         }
 
         // Permet de fixer le dossier destination du fichier WIM menu Appliquer Image
@@ -1259,10 +1375,11 @@ namespace DISM_GUI
         }
 
         // Choisir un fichier source Menu Export Image
-        // Révision 26/02/2020
+        // Révision 01/11/2020
         //
         private void BtnExportChoisirFichier_Click(object sender, EventArgs e)
         {
+            int IdxFor;
             String NomFichierSource;
             OpenFileDialog OuvrirBoiteDialogue = new OpenFileDialog();
             OuvrirBoiteDialogue.InitialDirectory = "C:\\";
@@ -1277,6 +1394,16 @@ namespace DISM_GUI
             {
                 NomFichierSource = OuvrirBoiteDialogue.FileName;
                 TxtBoxExportSourceFichier.Text = NomFichierSource;
+                
+                AfficheWimInfos("ExportImage_WimInfos.txt", TxtBoxExportSourceFichier.Text);
+
+                this.CmbBoxExportIndex.Items.Clear();  // efface la liste d'index
+                MAJListeIndex("ExportImage_WimInfos.txt", ListInfosWimExportImage);
+
+                for (IdxFor = 1; IdxFor <= ListInfosWimExportImage.Count(); IdxFor++)
+                {
+                    this.CmbBoxExportIndex.Items.Add(IdxFor);  // création interval index
+                }
             }
         }
 
@@ -1311,9 +1438,12 @@ namespace DISM_GUI
                     {
                         FicSrc = TxtBoxExportSourceFichier.Text;
                         FicDest = TxtBoxExportDestination.Text;
-                        FicNom = TxtBoxNomFichier.Text;
+                        
                         Index = CmbBoxExportIndex.Text;
                         Compr = CmbBoxExportCompression.Text;
+
+                        if (Path.GetExtension(TxtBoxNomFichier.Text.ToUpper()) != ".WIM") TxtBoxNomFichier.Text = TxtBoxNomFichier.Text + ".wim";
+                        FicNom = TxtBoxNomFichier.Text;
 
                         StrDISMArguments = "/Export-Image /SourceImageFile:" + "\"" + FicSrc + "\"" + " /SourceIndex:" + Index + " /DestinationImageFile:" + "\"" + FicDest + "\\" + FicNom + "\"" + " /Compress:" + Compr;
 
@@ -1431,6 +1561,34 @@ namespace DISM_GUI
         private void aProposDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
            MaFormAbout.ShowDialog();
+        }
+
+        // Mise à jour des informations du WIM sélectionné
+        //
+        private void CmbBoxIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TxtBoxIndex.Text = ListInfosWim.ElementAt(CmbBoxChoixIndex.SelectedIndex).Index.ToString();
+            TxtBoxNom.Text = ListInfosWimGestionMontage.ElementAt(CmbBoxIndex.SelectedIndex).Nom.ToString();
+            TxtBoxDescription.Text = ListInfosWimGestionMontage.ElementAt(CmbBoxIndex.SelectedIndex).Description.ToString();
+            TxtBoxTaille.Text = ListInfosWimGestionMontage.ElementAt(CmbBoxIndex.SelectedIndex).Taille.ToString();
+        }
+
+        // Mise à jour des informations du WIM sélectionné
+        //
+        private void CmbBoxApplyIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TxtBoxAppliquerImageNom.Text = ListInfosWimAppliquerImage.ElementAt(CmbBoxApplyIndex.SelectedIndex).Nom.ToString();
+            TxtBoxAppliquerImageDescription.Text = ListInfosWimAppliquerImage.ElementAt(CmbBoxApplyIndex.SelectedIndex).Description.ToString();
+            TxtBoxAppliquerImageTaille.Text = ListInfosWimAppliquerImage.ElementAt(CmbBoxApplyIndex.SelectedIndex).Taille.ToString();
+        }
+
+        // Mise à jour des informations du WIM sélectionné
+        //
+        private void CmbBoxExportIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TxtBoxExportImageNom.Text = ListInfosWimExportImage.ElementAt(CmbBoxExportIndex.SelectedIndex).Nom.ToString();
+            TxtBoxExportImageDescription.Text = ListInfosWimExportImage.ElementAt(CmbBoxExportIndex.SelectedIndex).Description.ToString();
+            TxtBoxExportImageTaille.Text = ListInfosWimExportImage.ElementAt(CmbBoxExportIndex.SelectedIndex).Taille.ToString();
         }
     }
 }

@@ -38,13 +38,18 @@
             this.aProposDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TabGestion = new System.Windows.Forms.TabControl();
             this.GestionMontage = new System.Windows.Forms.TabPage();
+            this.TxtBoxTaille = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TxtBoxDescription = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.TxtBoxNom = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.BtnOuvrirDossierMonte = new System.Windows.Forms.Button();
             this.BtnDemonterWim = new System.Windows.Forms.Button();
             this.BtnMonterWim = new System.Windows.Forms.Button();
             this.LblIndex = new System.Windows.Forms.Label();
             this.CmbBoxIndex = new System.Windows.Forms.ComboBox();
             this.chkMountReadOnly = new System.Windows.Forms.CheckBox();
-            this.AfficheWimInfos = new System.Windows.Forms.Button();
             this.BtnChoisirDossier = new System.Windows.Forms.Button();
             this.BtnChoisirWim = new System.Windows.Forms.Button();
             this.TxtDossierMontage = new System.Windows.Forms.TextBox();
@@ -127,7 +132,7 @@
             this.LblDestination = new System.Windows.Forms.Label();
             this.LblSource = new System.Windows.Forms.Label();
             this.CmbBoxCaptureCompression = new System.Windows.Forms.ComboBox();
-            this.TxtBoxCaptureNomFichier = new System.Windows.Forms.TextBox();
+            this.TxtBoxNomFichierDest = new System.Windows.Forms.TextBox();
             this.TxtBoxCaptureDestination = new System.Windows.Forms.TextBox();
             this.TxtBoxCaptureSource = new System.Windows.Forms.TextBox();
             this.BtnAjouter = new System.Windows.Forms.Button();
@@ -135,6 +140,12 @@
             this.ParcourirDestination = new System.Windows.Forms.Button();
             this.BtnParcourirSource = new System.Windows.Forms.Button();
             this.AppliqueImage = new System.Windows.Forms.TabPage();
+            this.TxtBoxAppliquerImageTaille = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TxtBoxAppliquerImageDescription = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.TxtBoxAppliquerImageNom = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.ChkBoxApplyVerifier = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.CmbBoxApplyIndex = new System.Windows.Forms.ComboBox();
@@ -187,6 +198,14 @@
             this.OpenFileDialog_ChoisirMSP = new System.Windows.Forms.OpenFileDialog();
             this.TxtBox_DISMVersion = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.TxtBoxExportImageTaille = new System.Windows.Forms.TextBox();
+            this.LblExportImageTaille = new System.Windows.Forms.Label();
+            this.TxtBoxExportImageDescription = new System.Windows.Forms.TextBox();
+            this.LblExportImageDescription = new System.Windows.Forms.Label();
+            this.TxtBoxExportImageNom = new System.Windows.Forms.TextBox();
+            this.LblExportImageNom = new System.Windows.Forms.Label();
+            this.TxtBoxNomWIM = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.TabGestion.SuspendLayout();
             this.GestionMontage.SuspendLayout();
@@ -296,13 +315,18 @@
             // 
             // GestionMontage
             // 
+            this.GestionMontage.Controls.Add(this.TxtBoxTaille);
+            this.GestionMontage.Controls.Add(this.label13);
+            this.GestionMontage.Controls.Add(this.TxtBoxDescription);
+            this.GestionMontage.Controls.Add(this.label12);
+            this.GestionMontage.Controls.Add(this.TxtBoxNom);
+            this.GestionMontage.Controls.Add(this.label11);
             this.GestionMontage.Controls.Add(this.BtnOuvrirDossierMonte);
             this.GestionMontage.Controls.Add(this.BtnDemonterWim);
             this.GestionMontage.Controls.Add(this.BtnMonterWim);
             this.GestionMontage.Controls.Add(this.LblIndex);
             this.GestionMontage.Controls.Add(this.CmbBoxIndex);
             this.GestionMontage.Controls.Add(this.chkMountReadOnly);
-            this.GestionMontage.Controls.Add(this.AfficheWimInfos);
             this.GestionMontage.Controls.Add(this.BtnChoisirDossier);
             this.GestionMontage.Controls.Add(this.BtnChoisirWim);
             this.GestionMontage.Controls.Add(this.TxtDossierMontage);
@@ -318,11 +342,62 @@
             this.GestionMontage.Text = "Gestion Montage";
             this.GestionMontage.UseVisualStyleBackColor = true;
             // 
+            // TxtBoxTaille
+            // 
+            this.TxtBoxTaille.Enabled = false;
+            this.TxtBoxTaille.Location = new System.Drawing.Point(148, 178);
+            this.TxtBoxTaille.Name = "TxtBoxTaille";
+            this.TxtBoxTaille.Size = new System.Drawing.Size(475, 26);
+            this.TxtBoxTaille.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(11, 178);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 20);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Taille:";
+            // 
+            // TxtBoxDescription
+            // 
+            this.TxtBoxDescription.Enabled = false;
+            this.TxtBoxDescription.Location = new System.Drawing.Point(148, 146);
+            this.TxtBoxDescription.Name = "TxtBoxDescription";
+            this.TxtBoxDescription.Size = new System.Drawing.Size(475, 26);
+            this.TxtBoxDescription.TabIndex = 18;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(11, 149);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(93, 20);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Description:";
+            // 
+            // TxtBoxNom
+            // 
+            this.TxtBoxNom.Enabled = false;
+            this.TxtBoxNom.Location = new System.Drawing.Point(148, 114);
+            this.TxtBoxNom.Name = "TxtBoxNom";
+            this.TxtBoxNom.Size = new System.Drawing.Size(475, 26);
+            this.TxtBoxNom.TabIndex = 16;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(11, 117);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(46, 20);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Nom:";
+            // 
             // BtnOuvrirDossierMonte
             // 
-            this.BtnOuvrirDossierMonte.Location = new System.Drawing.Point(637, 122);
+            this.BtnOuvrirDossierMonte.Location = new System.Drawing.Point(680, 158);
             this.BtnOuvrirDossierMonte.Name = "BtnOuvrirDossierMonte";
-            this.BtnOuvrirDossierMonte.Size = new System.Drawing.Size(168, 50);
+            this.BtnOuvrirDossierMonte.Size = new System.Drawing.Size(168, 45);
             this.BtnOuvrirDossierMonte.TabIndex = 14;
             this.BtnOuvrirDossierMonte.Text = "Ouvrir dossier monté";
             this.BtnOuvrirDossierMonte.UseVisualStyleBackColor = true;
@@ -331,7 +406,7 @@
             // BtnDemonterWim
             // 
             this.BtnDemonterWim.Enabled = false;
-            this.BtnDemonterWim.Location = new System.Drawing.Point(637, 70);
+            this.BtnDemonterWim.Location = new System.Drawing.Point(680, 96);
             this.BtnDemonterWim.Name = "BtnDemonterWim";
             this.BtnDemonterWim.Size = new System.Drawing.Size(168, 46);
             this.BtnDemonterWim.TabIndex = 13;
@@ -341,7 +416,7 @@
             // 
             // BtnMonterWim
             // 
-            this.BtnMonterWim.Location = new System.Drawing.Point(637, 19);
+            this.BtnMonterWim.Location = new System.Drawing.Point(680, 19);
             this.BtnMonterWim.Name = "BtnMonterWim";
             this.BtnMonterWim.Size = new System.Drawing.Size(168, 45);
             this.BtnMonterWim.TabIndex = 12;
@@ -352,7 +427,7 @@
             // LblIndex
             // 
             this.LblIndex.AutoSize = true;
-            this.LblIndex.Location = new System.Drawing.Point(552, 3);
+            this.LblIndex.Location = new System.Drawing.Point(575, 3);
             this.LblIndex.Name = "LblIndex";
             this.LblIndex.Size = new System.Drawing.Size(48, 20);
             this.LblIndex.TabIndex = 11;
@@ -361,46 +436,25 @@
             // CmbBoxIndex
             // 
             this.CmbBoxIndex.FormattingEnabled = true;
-            this.CmbBoxIndex.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.CmbBoxIndex.Location = new System.Drawing.Point(555, 28);
+            this.CmbBoxIndex.Location = new System.Drawing.Point(579, 28);
             this.CmbBoxIndex.Name = "CmbBoxIndex";
             this.CmbBoxIndex.Size = new System.Drawing.Size(45, 28);
             this.CmbBoxIndex.TabIndex = 10;
+            this.CmbBoxIndex.SelectedIndexChanged += new System.EventHandler(this.CmbBoxIndex_SelectedIndexChanged);
             // 
             // chkMountReadOnly
             // 
             this.chkMountReadOnly.AutoSize = true;
-            this.chkMountReadOnly.Location = new System.Drawing.Point(12, 148);
+            this.chkMountReadOnly.Location = new System.Drawing.Point(550, 71);
             this.chkMountReadOnly.Name = "chkMountReadOnly";
             this.chkMountReadOnly.Size = new System.Drawing.Size(124, 24);
             this.chkMountReadOnly.TabIndex = 9;
             this.chkMountReadOnly.Text = "Lecture seule";
             this.chkMountReadOnly.UseVisualStyleBackColor = true;
             // 
-            // AfficheWimInfos
-            // 
-            this.AfficheWimInfos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AfficheWimInfos.Location = new System.Drawing.Point(194, 60);
-            this.AfficheWimInfos.Name = "AfficheWimInfos";
-            this.AfficheWimInfos.Size = new System.Drawing.Size(169, 26);
-            this.AfficheWimInfos.TabIndex = 8;
-            this.AfficheWimInfos.Text = "Affiche WIM Infos";
-            this.AfficheWimInfos.UseVisualStyleBackColor = true;
-            this.AfficheWimInfos.Click += new System.EventHandler(this.AfficheWimInfos_Click);
-            // 
             // BtnChoisirDossier
             // 
-            this.BtnChoisirDossier.Location = new System.Drawing.Point(410, 103);
+            this.BtnChoisirDossier.Location = new System.Drawing.Point(410, 69);
             this.BtnChoisirDossier.Name = "BtnChoisirDossier";
             this.BtnChoisirDossier.Size = new System.Drawing.Size(125, 26);
             this.BtnChoisirDossier.TabIndex = 7;
@@ -422,7 +476,7 @@
             // TxtDossierMontage
             // 
             this.TxtDossierMontage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDossierMontage.Location = new System.Drawing.Point(148, 103);
+            this.TxtDossierMontage.Location = new System.Drawing.Point(148, 69);
             this.TxtDossierMontage.Name = "TxtDossierMontage";
             this.TxtDossierMontage.Size = new System.Drawing.Size(256, 26);
             this.TxtDossierMontage.TabIndex = 5;
@@ -431,7 +485,7 @@
             // 
             this.LblDossierMontage.AutoSize = true;
             this.LblDossierMontage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblDossierMontage.Location = new System.Drawing.Point(8, 109);
+            this.LblDossierMontage.Location = new System.Drawing.Point(8, 75);
             this.LblDossierMontage.Name = "LblDossierMontage";
             this.LblDossierMontage.Size = new System.Drawing.Size(134, 20);
             this.LblDossierMontage.TabIndex = 4;
@@ -441,7 +495,7 @@
             // 
             this.LblFichierWim.AutoSize = true;
             this.LblFichierWim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblFichierWim.Location = new System.Drawing.Point(6, 31);
+            this.LblFichierWim.Location = new System.Drawing.Point(11, 31);
             this.LblFichierWim.Name = "LblFichierWim";
             this.LblFichierWim.Size = new System.Drawing.Size(95, 20);
             this.LblFichierWim.TabIndex = 3;
@@ -1122,6 +1176,8 @@
             // 
             // CaptureImage
             // 
+            this.CaptureImage.Controls.Add(this.label17);
+            this.CaptureImage.Controls.Add(this.TxtBoxNomWIM);
             this.CaptureImage.Controls.Add(this.LblDescriptionWIM);
             this.CaptureImage.Controls.Add(this.TxtBoxCaptureDescriptionWIM);
             this.CaptureImage.Controls.Add(this.ChkBoxCaptureVerifier);
@@ -1130,7 +1186,7 @@
             this.CaptureImage.Controls.Add(this.LblDestination);
             this.CaptureImage.Controls.Add(this.LblSource);
             this.CaptureImage.Controls.Add(this.CmbBoxCaptureCompression);
-            this.CaptureImage.Controls.Add(this.TxtBoxCaptureNomFichier);
+            this.CaptureImage.Controls.Add(this.TxtBoxNomFichierDest);
             this.CaptureImage.Controls.Add(this.TxtBoxCaptureDestination);
             this.CaptureImage.Controls.Add(this.TxtBoxCaptureSource);
             this.CaptureImage.Controls.Add(this.BtnAjouter);
@@ -1147,7 +1203,7 @@
             // LblDescriptionWIM
             // 
             this.LblDescriptionWIM.AutoSize = true;
-            this.LblDescriptionWIM.Location = new System.Drawing.Point(3, 155);
+            this.LblDescriptionWIM.Location = new System.Drawing.Point(3, 186);
             this.LblDescriptionWIM.Name = "LblDescriptionWIM";
             this.LblDescriptionWIM.Size = new System.Drawing.Size(130, 20);
             this.LblDescriptionWIM.TabIndex = 14;
@@ -1155,7 +1211,7 @@
             // 
             // TxtBoxCaptureDescriptionWIM
             // 
-            this.TxtBoxCaptureDescriptionWIM.Location = new System.Drawing.Point(158, 152);
+            this.TxtBoxCaptureDescriptionWIM.Location = new System.Drawing.Point(158, 183);
             this.TxtBoxCaptureDescriptionWIM.Name = "TxtBoxCaptureDescriptionWIM";
             this.TxtBoxCaptureDescriptionWIM.Size = new System.Drawing.Size(300, 26);
             this.TxtBoxCaptureDescriptionWIM.TabIndex = 13;
@@ -1163,7 +1219,7 @@
             // ChkBoxCaptureVerifier
             // 
             this.ChkBoxCaptureVerifier.AutoSize = true;
-            this.ChkBoxCaptureVerifier.Location = new System.Drawing.Point(158, 229);
+            this.ChkBoxCaptureVerifier.Location = new System.Drawing.Point(323, 220);
             this.ChkBoxCaptureVerifier.Name = "ChkBoxCaptureVerifier";
             this.ChkBoxCaptureVerifier.Size = new System.Drawing.Size(78, 24);
             this.ChkBoxCaptureVerifier.TabIndex = 12;
@@ -1173,7 +1229,7 @@
             // LblCompression
             // 
             this.LblCompression.AutoSize = true;
-            this.LblCompression.Location = new System.Drawing.Point(3, 189);
+            this.LblCompression.Location = new System.Drawing.Point(3, 220);
             this.LblCompression.Name = "LblCompression";
             this.LblCompression.Size = new System.Drawing.Size(106, 20);
             this.LblCompression.TabIndex = 11;
@@ -1184,9 +1240,9 @@
             this.LblNomFichierWIM.AutoSize = true;
             this.LblNomFichierWIM.Location = new System.Drawing.Point(3, 118);
             this.LblNomFichierWIM.Name = "LblNomFichierWIM";
-            this.LblNomFichierWIM.Size = new System.Drawing.Size(92, 20);
+            this.LblNomFichierWIM.Size = new System.Drawing.Size(134, 20);
             this.LblNomFichierWIM.TabIndex = 10;
-            this.LblNomFichierWIM.Text = "Nom fichier:";
+            this.LblNomFichierWIM.Text = "Nom fichier Dest.:";
             // 
             // LblDestination
             // 
@@ -1213,17 +1269,17 @@
             "none",
             "fast",
             "max"});
-            this.CmbBoxCaptureCompression.Location = new System.Drawing.Point(158, 184);
+            this.CmbBoxCaptureCompression.Location = new System.Drawing.Point(158, 215);
             this.CmbBoxCaptureCompression.Name = "CmbBoxCaptureCompression";
             this.CmbBoxCaptureCompression.Size = new System.Drawing.Size(121, 28);
             this.CmbBoxCaptureCompression.TabIndex = 7;
             // 
-            // TxtBoxCaptureNomFichier
+            // TxtBoxNomFichierDest
             // 
-            this.TxtBoxCaptureNomFichier.Location = new System.Drawing.Point(158, 118);
-            this.TxtBoxCaptureNomFichier.Name = "TxtBoxCaptureNomFichier";
-            this.TxtBoxCaptureNomFichier.Size = new System.Drawing.Size(300, 26);
-            this.TxtBoxCaptureNomFichier.TabIndex = 6;
+            this.TxtBoxNomFichierDest.Location = new System.Drawing.Point(158, 118);
+            this.TxtBoxNomFichierDest.Name = "TxtBoxNomFichierDest";
+            this.TxtBoxNomFichierDest.Size = new System.Drawing.Size(300, 26);
+            this.TxtBoxNomFichierDest.TabIndex = 6;
             // 
             // TxtBoxCaptureDestination
             // 
@@ -1281,6 +1337,12 @@
             // 
             // AppliqueImage
             // 
+            this.AppliqueImage.Controls.Add(this.TxtBoxAppliquerImageTaille);
+            this.AppliqueImage.Controls.Add(this.label14);
+            this.AppliqueImage.Controls.Add(this.TxtBoxAppliquerImageDescription);
+            this.AppliqueImage.Controls.Add(this.label15);
+            this.AppliqueImage.Controls.Add(this.TxtBoxAppliquerImageNom);
+            this.AppliqueImage.Controls.Add(this.label16);
             this.AppliqueImage.Controls.Add(this.ChkBoxApplyVerifier);
             this.AppliqueImage.Controls.Add(this.label5);
             this.AppliqueImage.Controls.Add(this.CmbBoxApplyIndex);
@@ -1298,10 +1360,61 @@
             this.AppliqueImage.Text = "Appliquer Image";
             this.AppliqueImage.UseVisualStyleBackColor = true;
             // 
+            // TxtBoxAppliquerImageTaille
+            // 
+            this.TxtBoxAppliquerImageTaille.Enabled = false;
+            this.TxtBoxAppliquerImageTaille.Location = new System.Drawing.Point(112, 196);
+            this.TxtBoxAppliquerImageTaille.Name = "TxtBoxAppliquerImageTaille";
+            this.TxtBoxAppliquerImageTaille.Size = new System.Drawing.Size(418, 26);
+            this.TxtBoxAppliquerImageTaille.TabIndex = 26;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(12, 196);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(49, 20);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "Taille:";
+            // 
+            // TxtBoxAppliquerImageDescription
+            // 
+            this.TxtBoxAppliquerImageDescription.Enabled = false;
+            this.TxtBoxAppliquerImageDescription.Location = new System.Drawing.Point(112, 164);
+            this.TxtBoxAppliquerImageDescription.Name = "TxtBoxAppliquerImageDescription";
+            this.TxtBoxAppliquerImageDescription.Size = new System.Drawing.Size(418, 26);
+            this.TxtBoxAppliquerImageDescription.TabIndex = 24;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 167);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(93, 20);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Description:";
+            // 
+            // TxtBoxAppliquerImageNom
+            // 
+            this.TxtBoxAppliquerImageNom.Enabled = false;
+            this.TxtBoxAppliquerImageNom.Location = new System.Drawing.Point(112, 132);
+            this.TxtBoxAppliquerImageNom.Name = "TxtBoxAppliquerImageNom";
+            this.TxtBoxAppliquerImageNom.Size = new System.Drawing.Size(418, 26);
+            this.TxtBoxAppliquerImageNom.TabIndex = 22;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(12, 135);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 20);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Nom:";
+            // 
             // ChkBoxApplyVerifier
             // 
             this.ChkBoxApplyVerifier.AutoSize = true;
-            this.ChkBoxApplyVerifier.Location = new System.Drawing.Point(112, 205);
+            this.ChkBoxApplyVerifier.Location = new System.Drawing.Point(608, 74);
             this.ChkBoxApplyVerifier.Name = "ChkBoxApplyVerifier";
             this.ChkBoxApplyVerifier.Size = new System.Drawing.Size(78, 24);
             this.ChkBoxApplyVerifier.TabIndex = 9;
@@ -1311,7 +1424,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 156);
+            this.label5.Location = new System.Drawing.Point(538, 43);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 20);
             this.label5.TabIndex = 8;
@@ -1320,31 +1433,16 @@
             // CmbBoxApplyIndex
             // 
             this.CmbBoxApplyIndex.FormattingEnabled = true;
-            this.CmbBoxApplyIndex.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15"});
-            this.CmbBoxApplyIndex.Location = new System.Drawing.Point(112, 153);
+            this.CmbBoxApplyIndex.Location = new System.Drawing.Point(608, 40);
             this.CmbBoxApplyIndex.Name = "CmbBoxApplyIndex";
             this.CmbBoxApplyIndex.Size = new System.Drawing.Size(57, 28);
             this.CmbBoxApplyIndex.TabIndex = 7;
+            this.CmbBoxApplyIndex.SelectedIndexChanged += new System.EventHandler(this.CmbBoxApplyIndex_SelectedIndexChanged);
             // 
             // LblDestinationBis
             // 
             this.LblDestinationBis.AutoSize = true;
-            this.LblDestinationBis.Location = new System.Drawing.Point(8, 105);
+            this.LblDestinationBis.Location = new System.Drawing.Point(8, 93);
             this.LblDestinationBis.Name = "LblDestinationBis";
             this.LblDestinationBis.Size = new System.Drawing.Size(94, 20);
             this.LblDestinationBis.TabIndex = 6;
@@ -1361,14 +1459,14 @@
             // 
             // TxtBoxApplyDestination
             // 
-            this.TxtBoxApplyDestination.Location = new System.Drawing.Point(112, 99);
+            this.TxtBoxApplyDestination.Location = new System.Drawing.Point(112, 87);
             this.TxtBoxApplyDestination.Name = "TxtBoxApplyDestination";
             this.TxtBoxApplyDestination.Size = new System.Drawing.Size(303, 26);
             this.TxtBoxApplyDestination.TabIndex = 4;
             // 
             // BtnAppliquerImage
             // 
-            this.BtnAppliquerImage.Location = new System.Drawing.Point(563, 57);
+            this.BtnAppliquerImage.Location = new System.Drawing.Point(723, 43);
             this.BtnAppliquerImage.Name = "BtnAppliquerImage";
             this.BtnAppliquerImage.Size = new System.Drawing.Size(136, 53);
             this.BtnAppliquerImage.TabIndex = 3;
@@ -1378,7 +1476,7 @@
             // 
             // BtnApplyParcourirDestination
             // 
-            this.BtnApplyParcourirDestination.Location = new System.Drawing.Point(441, 99);
+            this.BtnApplyParcourirDestination.Location = new System.Drawing.Point(441, 87);
             this.BtnApplyParcourirDestination.Name = "BtnApplyParcourirDestination";
             this.BtnApplyParcourirDestination.Size = new System.Drawing.Size(89, 26);
             this.BtnApplyParcourirDestination.TabIndex = 2;
@@ -1405,6 +1503,12 @@
             // 
             // ExportImage
             // 
+            this.ExportImage.Controls.Add(this.TxtBoxExportImageTaille);
+            this.ExportImage.Controls.Add(this.LblExportImageTaille);
+            this.ExportImage.Controls.Add(this.TxtBoxExportImageDescription);
+            this.ExportImage.Controls.Add(this.LblExportImageDescription);
+            this.ExportImage.Controls.Add(this.TxtBoxExportImageNom);
+            this.ExportImage.Controls.Add(this.LblExportImageNom);
             this.ExportImage.Controls.Add(this.LblExportName);
             this.ExportImage.Controls.Add(this.TxtBoxNomFichier);
             this.ExportImage.Controls.Add(this.ChkBoxExportCheckIntegrity);
@@ -1447,7 +1551,7 @@
             // ChkBoxExportCheckIntegrity
             // 
             this.ChkBoxExportCheckIntegrity.AutoSize = true;
-            this.ChkBoxExportCheckIntegrity.Location = new System.Drawing.Point(133, 233);
+            this.ChkBoxExportCheckIntegrity.Location = new System.Drawing.Point(634, 172);
             this.ChkBoxExportCheckIntegrity.Name = "ChkBoxExportCheckIntegrity";
             this.ChkBoxExportCheckIntegrity.Size = new System.Drawing.Size(134, 24);
             this.ChkBoxExportCheckIntegrity.TabIndex = 22;
@@ -1457,7 +1561,7 @@
             // ChkBoxExportWimBoot
             // 
             this.ChkBoxExportWimBoot.AutoSize = true;
-            this.ChkBoxExportWimBoot.Location = new System.Drawing.Point(329, 198);
+            this.ChkBoxExportWimBoot.Location = new System.Drawing.Point(758, 137);
             this.ChkBoxExportWimBoot.Name = "ChkBoxExportWimBoot";
             this.ChkBoxExportWimBoot.Size = new System.Drawing.Size(97, 24);
             this.ChkBoxExportWimBoot.TabIndex = 21;
@@ -1467,7 +1571,7 @@
             // ChkBoxExportBootable
             // 
             this.ChkBoxExportBootable.AutoSize = true;
-            this.ChkBoxExportBootable.Location = new System.Drawing.Point(132, 198);
+            this.ChkBoxExportBootable.Location = new System.Drawing.Point(633, 137);
             this.ChkBoxExportBootable.Name = "ChkBoxExportBootable";
             this.ChkBoxExportBootable.Size = new System.Drawing.Size(96, 24);
             this.ChkBoxExportBootable.TabIndex = 20;
@@ -1477,7 +1581,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(218, 157);
+            this.label9.Location = new System.Drawing.Point(630, 96);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(106, 20);
             this.label9.TabIndex = 19;
@@ -1491,7 +1595,7 @@
             "max",
             "none",
             "recovery"});
-            this.CmbBoxExportCompression.Location = new System.Drawing.Point(330, 154);
+            this.CmbBoxExportCompression.Location = new System.Drawing.Point(742, 93);
             this.CmbBoxExportCompression.Name = "CmbBoxExportCompression";
             this.CmbBoxExportCompression.Size = new System.Drawing.Size(132, 28);
             this.CmbBoxExportCompression.TabIndex = 18;
@@ -1499,7 +1603,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 157);
+            this.label6.Location = new System.Drawing.Point(486, 96);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 20);
             this.label6.TabIndex = 17;
@@ -1508,26 +1612,11 @@
             // CmbBoxExportIndex
             // 
             this.CmbBoxExportIndex.FormattingEnabled = true;
-            this.CmbBoxExportIndex.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15"});
-            this.CmbBoxExportIndex.Location = new System.Drawing.Point(132, 154);
+            this.CmbBoxExportIndex.Location = new System.Drawing.Point(544, 93);
             this.CmbBoxExportIndex.Name = "CmbBoxExportIndex";
             this.CmbBoxExportIndex.Size = new System.Drawing.Size(57, 28);
             this.CmbBoxExportIndex.TabIndex = 16;
+            this.CmbBoxExportIndex.SelectedIndexChanged += new System.EventHandler(this.CmbBoxExportIndex_SelectedIndexChanged);
             // 
             // LblExportDestination
             // 
@@ -1792,6 +1881,73 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "DISM Version:";
             // 
+            // TxtBoxExportImageTaille
+            // 
+            this.TxtBoxExportImageTaille.Enabled = false;
+            this.TxtBoxExportImageTaille.Location = new System.Drawing.Point(133, 201);
+            this.TxtBoxExportImageTaille.Name = "TxtBoxExportImageTaille";
+            this.TxtBoxExportImageTaille.Size = new System.Drawing.Size(418, 26);
+            this.TxtBoxExportImageTaille.TabIndex = 39;
+            // 
+            // LblExportImageTaille
+            // 
+            this.LblExportImageTaille.AutoSize = true;
+            this.LblExportImageTaille.Location = new System.Drawing.Point(33, 201);
+            this.LblExportImageTaille.Name = "LblExportImageTaille";
+            this.LblExportImageTaille.Size = new System.Drawing.Size(49, 20);
+            this.LblExportImageTaille.TabIndex = 38;
+            this.LblExportImageTaille.Text = "Taille:";
+            // 
+            // TxtBoxExportImageDescription
+            // 
+            this.TxtBoxExportImageDescription.Enabled = false;
+            this.TxtBoxExportImageDescription.Location = new System.Drawing.Point(133, 169);
+            this.TxtBoxExportImageDescription.Name = "TxtBoxExportImageDescription";
+            this.TxtBoxExportImageDescription.Size = new System.Drawing.Size(418, 26);
+            this.TxtBoxExportImageDescription.TabIndex = 37;
+            // 
+            // LblExportImageDescription
+            // 
+            this.LblExportImageDescription.AutoSize = true;
+            this.LblExportImageDescription.Location = new System.Drawing.Point(33, 172);
+            this.LblExportImageDescription.Name = "LblExportImageDescription";
+            this.LblExportImageDescription.Size = new System.Drawing.Size(93, 20);
+            this.LblExportImageDescription.TabIndex = 36;
+            this.LblExportImageDescription.Text = "Description:";
+            // 
+            // TxtBoxExportImageNom
+            // 
+            this.TxtBoxExportImageNom.Enabled = false;
+            this.TxtBoxExportImageNom.Location = new System.Drawing.Point(133, 137);
+            this.TxtBoxExportImageNom.Name = "TxtBoxExportImageNom";
+            this.TxtBoxExportImageNom.Size = new System.Drawing.Size(418, 26);
+            this.TxtBoxExportImageNom.TabIndex = 35;
+            // 
+            // LblExportImageNom
+            // 
+            this.LblExportImageNom.AutoSize = true;
+            this.LblExportImageNom.Location = new System.Drawing.Point(33, 140);
+            this.LblExportImageNom.Name = "LblExportImageNom";
+            this.LblExportImageNom.Size = new System.Drawing.Size(46, 20);
+            this.LblExportImageNom.TabIndex = 34;
+            this.LblExportImageNom.Text = "Nom:";
+            // 
+            // TxtBoxNomWIM
+            // 
+            this.TxtBoxNomWIM.Location = new System.Drawing.Point(158, 151);
+            this.TxtBoxNomWIM.Name = "TxtBoxNomWIM";
+            this.TxtBoxNomWIM.Size = new System.Drawing.Size(300, 26);
+            this.TxtBoxNomWIM.TabIndex = 15;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(3, 154);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(81, 20);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "Nom Wim:";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1872,7 +2028,6 @@
         private System.Windows.Forms.TextBox TxtDossierMontage;
         private System.Windows.Forms.Label LblDossierMontage;
         private System.Windows.Forms.Button BtnChoisirWim;
-        private System.Windows.Forms.Button AfficheWimInfos;
         private System.Windows.Forms.Button BtnChoisirDossier;
         private System.Windows.Forms.OpenFileDialog OpenFileDialogue_ChoisirWIM;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_ChoisirDossier;
@@ -1953,7 +2108,7 @@
         private System.Windows.Forms.Label LblDestination;
         private System.Windows.Forms.Label LblSource;
         private System.Windows.Forms.ComboBox CmbBoxCaptureCompression;
-        private System.Windows.Forms.TextBox TxtBoxCaptureNomFichier;
+        private System.Windows.Forms.TextBox TxtBoxNomFichierDest;
         private System.Windows.Forms.TextBox TxtBoxCaptureDestination;
         private System.Windows.Forms.TextBox TxtBoxCaptureSource;
         private System.Windows.Forms.Button BtnAjouter;
@@ -2008,6 +2163,26 @@
         private System.Windows.Forms.Button BtnExportDriverChoisirDossierOnline;
         private System.Windows.Forms.TextBox TxtBox_DISMVersion;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox TxtBoxTaille;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox TxtBoxDescription;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox TxtBoxNom;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TxtBoxAppliquerImageTaille;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox TxtBoxAppliquerImageDescription;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox TxtBoxAppliquerImageNom;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox TxtBoxExportImageTaille;
+        private System.Windows.Forms.Label LblExportImageTaille;
+        private System.Windows.Forms.TextBox TxtBoxExportImageDescription;
+        private System.Windows.Forms.Label LblExportImageDescription;
+        private System.Windows.Forms.TextBox TxtBoxExportImageNom;
+        private System.Windows.Forms.Label LblExportImageNom;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox TxtBoxNomWIM;
     }
 }
 
