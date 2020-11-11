@@ -1,0 +1,39 @@
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe.config
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.pdb
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormMain.resources
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormProgress.resources
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.Properties.Resources.resources
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csproj.GenerateResource.cache
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.exe
+C:\Users\dupont\Desktop\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.pdb
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe.config
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.pdb
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormMain.resources
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormProgress.resources
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.Properties.Resources.resources
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csproj.GenerateResource.cache
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.exe
+C:\Users\dupont\Desktop\Version new qui pose prob\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.pdb
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormMain.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormProgress.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.Properties.Resources.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csproj.GenerateResource.cache
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.exe
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.pdb
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe.config
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.pdb
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe.config
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.exe
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\bin\Debug\DISM-GUI.pdb
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csprojAssemblyReference.cache
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormAbout.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormMain.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.FormProgress.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM_GUI.Properties.Resources.resources
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csproj.GenerateResource.cache
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.csproj.CoreCompileInputs.cache
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.exe
+C:\Users\dupon\source\repos\DISM-GUI\DISM-GUI\obj\Debug\DISM-GUI.pdb
